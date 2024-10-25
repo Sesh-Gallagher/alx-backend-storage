@@ -11,17 +11,17 @@ if __name__ == "__main__":
     """
 
     client = MongoClient('mongodb://127.0.0.1:27017')
-    nginx_logs = client.logs.nginx
+    nginx_collection = client.logs.nginx
 
-    n_logs = nginx_logs.count_documents({})
-    print(f'{n_logs} logs')
+    n_log = nginx_collection.count_documents({})
+    print(f'{n_log} logs')
     methods = ["GET", "POST", "PATCH", "PUT", "DELETE"]
     print('Methods:')
     for method in methods
-    doc_count = nginx_logs.count_documents({"method": method})
+    doc_count = nginx_collection.count_documents({"method": method})
     print(f'\tmethod {method}: {doc_count}')
 
-    check_status = nginx_logs.count_documents(
+    status_check = nginx_collection.count_documents(
             {"method": "GET", "path": "/status"}
     )
-    print(f'{check_status} check status')
+    print(f'{status_check} status check')
